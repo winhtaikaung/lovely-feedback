@@ -41,9 +41,9 @@ test('should able to create new user', async () => {
 
 test('should able to update  user', async () => {
   userDomain = new UserDomain(conn.getConnection(), 'user')
-  const response_id = UUID()
-  const rating_id = UUID()
-  await userDomain.createData(response_id, rating_id)
+  const responseId = UUID()
+  const ratingId = UUID()
+  await userDomain.createData(responseId, ratingId)
 
   const result = await userDomain.selectAllData()
 
@@ -61,9 +61,9 @@ test('should able to update  user', async () => {
 
 test('should able to delete user', async () => {
   userDomain = new UserDomain(conn.getConnection(), 'user')
-  const response_id = UUID()
-  const rating_id = UUID()
-  await userDomain.createData(response_id, rating_id)
+  const responseId = UUID()
+  const ratingId = UUID()
+  await userDomain.createData(responseId, ratingId)
 
   const result = await userDomain.selectAllData()
 
@@ -75,7 +75,7 @@ test('should able to delete user', async () => {
   const deletedResult = await userDomain.selectAllData()
   expect(deletedResult.rows).toHaveLength(0)
 })
-afterAll((done) => {
+afterAll(done => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()
 

@@ -11,3 +11,13 @@ export const schema = {
 export const ddl = {
   droptables: 'DROP TABLE IF EXISTS `question`,`rating`,`response`,`user`;',
 }
+
+// REPORTING QUERY
+
+// SELECT DISTINCT P1.totalPoints,P2.totalPoints,P3.totalPoints ,P4.totalPoints,P5.totalPoints,P6.totalPoints FROM rating T,
+// (SELECT COUNT(*)as totalPoints from rating WHERE points =1) as P1,
+// (SELECT COUNT(*)as totalPoints from rating WHERE points =2) as P2,
+// (SELECT COUNT(*)as totalPoints from rating WHERE points =3) as P3,
+// (SELECT COUNT(*)as totalPoints from rating WHERE points =4) as P4,
+// (SELECT COUNT(*)as totalPoints from rating WHERE points =5) as P5,
+// (SELECT COUNT(*)as totalPoints from rating WHERE points =6) as P6;

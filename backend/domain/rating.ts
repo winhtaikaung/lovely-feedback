@@ -1,6 +1,6 @@
-import { keysToCamel } from '../utils/objectutils'
 import mysql from 'mysql2/promise'
 import { Log } from '../utils/log'
+import { keysToCamel } from '../utils/objectutils'
 import { UUID } from '../utils/uuid'
 import BaseDomain from './base'
 

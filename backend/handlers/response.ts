@@ -52,7 +52,7 @@ export default class UserResponseHandler extends BaseHandler {
     res: core.Response<any, Record<string, any>, number>,
   ) {
     const body = req.body
-    console.log(body.data.responseData)
+
     const { row } = await this.userResponseDomain.createData(body.data.userId, body.data.responseData)
     if (row) {
       res.status(HttpStatusCode.OK).json(this.resBody(row))

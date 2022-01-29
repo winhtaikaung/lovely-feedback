@@ -13,7 +13,7 @@ export default class BaseDomain {
   }
 
   escapeSQLStr(str: string): string {
-    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, (char) => {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g,char => {
       switch (char) {
         case '\0':
           return '\\0'

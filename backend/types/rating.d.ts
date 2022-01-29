@@ -1,4 +1,4 @@
-declare module RatingModule {
+declare namespace RatingModule {
   export interface Rating {
     id: string
     points: number

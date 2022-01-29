@@ -8,7 +8,7 @@ const isObject = (obj: any) => {
 const toCamel = (s: string): CamelCase<string> =>
   s.replace(/([-_][a-z])/gi, ($1: string) => $1.toUpperCase().replace('-', '').replace('_', ''))
 
-export const keysToCamel = function (o: any): KeysToCamelCase<KVObject> {
+export const keysToCamel = (o: any): KeysToCamelCase<KVObject> => {
   if (isObject(o)) {
     const n = {} as KVObject
     const tempObj = o as KVObject

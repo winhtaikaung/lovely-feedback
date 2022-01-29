@@ -1,10 +1,10 @@
-import { keysToCamel } from '../utils/objectutils'
 import mysql from 'mysql2/promise'
+import { QUESTION_TYPE } from '../enums/question'
+import { QuestionModule } from '../types/question'
 import { Log } from '../utils/log'
+import { keysToCamel } from '../utils/objectutils'
 import { UUID } from '../utils/uuid'
 import BaseDomain from './base'
-import { QuestionModule } from '../types/question'
-import { QUESTION_TYPE } from '../enums/question'
 
 export default class QuestionDomain extends BaseDomain {
   constructor(db: mysql.Connection | null, tblName: string) {

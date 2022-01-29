@@ -1,6 +1,6 @@
 import { QUESTION_TYPE } from '../enums/question'
 
-declare module QuestionModule {
+export namespace QuestionModule {
   export interface Question {
     id: string
     type: QUESTION_TYPE

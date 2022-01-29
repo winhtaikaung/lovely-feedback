@@ -61,7 +61,7 @@ test('should able to delete question', async () => {
   expect(deletedResult.rows).toHaveLength(0)
 })
 
-afterAll((done) => {
+afterAll(done => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()
 

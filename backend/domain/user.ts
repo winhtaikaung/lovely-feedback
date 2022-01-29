@@ -1,7 +1,7 @@
-import { keysToCamel } from './../utils/objectutils'
 import mysql from 'mysql2/promise'
 import { Log } from '../utils/log'
 import { UUID } from '../utils/uuid'
+import { keysToCamel } from './../utils/objectutils'
 import BaseDomain from './base'
 
 export default class UserDomain extends BaseDomain {
@@ -37,12 +37,12 @@ export default class UserDomain extends BaseDomain {
     return { rows: [], fields: [] }
   }
 
-  public async createData(rating_id?: string, response_id?: string): Promise<{ row: UserModule.User | null }> {
+  public async createData(ratingId?: string, responseId?: string): Promise<{ row: UserModule.User | null }> {
     const query = 'INSERT INTO `' + this.tableName + '`(`id`, `rating_id`, `response_id`) VALUES (?,?,?)'
     const id = UUID()
     try {
       if (this.connection !== null) {
-        await this.connection.execute(this.escapeSQLStr(query), [id, rating_id || '', response_id || ''])
+        await this.connection.execute(this.escapeSQLStr(query), [id, ratingId || '', responseId || ''])
         const result = await this.selectById(id)
         return { row: result.rows.length > 0 ? (result.rows[0] as UserModule.User) : null }
       }
@@ -52,12 +52,12 @@ export default class UserDomain extends BaseDomain {
     return { row: null }
   }
 
-  public async updateData(id: string, rating_id: string, response_id: string) {
+  public async updateData(id: string, ratingId: string, responseId: string) {
     const query = 'UPDATE `' + this.tableName + '` SET `rating_id`= ?,`response_id`= ? WHERE `id`= ?'
 
     try {
       if (this.connection !== null) {
-        const [rows] = await this.connection.execute(this.escapeSQLStr(query), [rating_id, response_id, id])
+        const [rows] = await this.connection.execute(this.escapeSQLStr(query), [ratingId, responseId, id])
         return rows
       }
     } catch (e: any) {

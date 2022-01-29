@@ -1,4 +1,4 @@
-declare module UserModule {
+declare namespace UserModule {
   export interface User {
     id: string
     ratingId?: string
