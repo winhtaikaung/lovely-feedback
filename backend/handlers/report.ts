@@ -1,5 +1,6 @@
 import express from 'express'
 import * as core from 'express-serve-static-core'
+
 import ReportDomain from '../domain/report'
 import HttpStatusCode from '../enums/httpstatus'
 import BaseHandler from './base'

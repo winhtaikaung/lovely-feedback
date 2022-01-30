@@ -1,5 +1,6 @@
 import express from 'express'
 import * as core from 'express-serve-static-core'
+
 import RatingDomain from '../domain/rating'
 import UserDomain from '../domain/user'
 import HttpStatusCode from '../enums/httpstatus'

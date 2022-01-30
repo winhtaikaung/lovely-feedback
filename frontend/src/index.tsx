@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
 import { IntlProvider } from 'react-intl'
 
+import App from './App'
 import { translationMessages } from './i18n'
+import './index.css'
+import reportWebVitals from './reportWebVitals'
 
 const language: any = navigator.language.split(/[-_]/)[0]
 const message: TranslationMessages = translationMessages

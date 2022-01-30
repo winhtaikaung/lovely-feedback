@@ -1,9 +1,8 @@
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import RatingForm from '..'
 
-import TestingUtils from '../../../test-utils'
-import { render } from '../../../test-utils'
+import RatingForm from '..'
+import TestingUtils, { render } from '../../../test-utils'
 
 const response = {
   id: '2bd0c65a-afe2-4a78-8500-850f3896f642',

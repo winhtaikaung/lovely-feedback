@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
+
 import Box from '../../component/Box/index.style'
-import { ThankYouUI } from './index.style'
-import { COLORS, FONT_SIZES } from '../../constants'
 import Text from '../../component/Text/index.style'
+import { COLORS, FONT_SIZES } from '../../constants'
+import { ThankYouUI } from './index.style'
 
 const ThankYou: React.FC<{ visible: boolean; onCardClicked?: () => void; onClose?: () => void }> = ({
   visible,

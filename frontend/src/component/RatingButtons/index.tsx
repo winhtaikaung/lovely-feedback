@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { RatingButtonWrapper, RatingButtonUI } from './index.style'
+
+import { RatingButtonUI, RatingButtonWrapper } from './index.style'
 
 const RatingButtons: React.FC<{ isDisabled: boolean; count: number; onRatingClick?: (points: number) => void }> = ({
   count,

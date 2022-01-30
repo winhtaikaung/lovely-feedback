@@ -1,8 +1,8 @@
 import React from 'react'
 
 import './App.css'
-import FeedBack from './FeedBack'
 import Portal from './component/Portal'
+import FeedBack from './FeedBack'
 
 function App() {
   const widgetPortal = React.useMemo(() => {

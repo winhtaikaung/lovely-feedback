@@ -10,12 +10,45 @@
     "semicolon": false,
     "object-literal-sort-keys": false,
     "no-bitwise":false,
+   
     "ordered-imports": [
       true,
       {
-        "import-sources-order": "lowercase-last",
-        "named-imports-order": "lowercase-first"
+        "module-source-path": "full",
+        "grouped-imports": true,
+        "groups": [
+          {
+            "name": "react",
+            "match": "^react.*",
+            "order": 1
+          },
+          {
+            "name": "internal modules",
+            "match": "^@app.*",
+            "order": 3
+          },
+          {
+            "name": "relative dir",
+            "match": "^[.].*",
+            "order": 4
+          },
+          {
+            "name": "node_modules",
+            "match": ".*",
+            "order": 2
+          }
+        ]
       }
     ]
-  }
+  },
+  "linterOptions": {
+    "exclude": ["**/*.js"],
+    "include": ["**/*.ts", "**/*.tsx"]
+  },
+  "ordered-imports": [
+    true,
+    {
+      "module-source-path": "basename"
+    }
+  ]
 }

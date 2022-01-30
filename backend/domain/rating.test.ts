@@ -1,6 +1,5 @@
 import { DBConnect } from '../utils/dbconnect'
 import { UUID } from '../utils/uuid'
-
 import RatingDomain from './rating'
 const conn = new DBConnect('mysql://root:123456@mysql:3306/db_feedback_test')
 let ratingDomain = null

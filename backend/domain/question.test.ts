@@ -1,6 +1,5 @@
 import { QUESTION_TYPE } from '../enums/question'
 import { DBConnect } from '../utils/dbconnect'
-
 import QuestionDomain from './question'
 const conn = new DBConnect('mysql://root:123456@mysql:3306/db_feedback_test')
 let questionDomain = null

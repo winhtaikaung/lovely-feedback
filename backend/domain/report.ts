@@ -1,9 +1,8 @@
 import mysql from 'mysql2/promise'
-import { ReportModule } from '../types/report'
 
+import { ReportModule } from '../types/report'
 import { Log } from '../utils/log'
 import { keysToCamel } from '../utils/objectutils'
-
 import BaseDomain from './base'
 
 export default class ReportDomain extends BaseDomain {

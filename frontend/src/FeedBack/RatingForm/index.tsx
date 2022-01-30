@@ -1,15 +1,16 @@
 import * as React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGrinAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FormattedMessage } from 'react-intl'
-import Box from '../../component/Box/index.style'
-import { AnimatedTitle, AnimatedButtonWrapper, FabIcon, RatingFormUI } from './index.style'
-import { COLORS, FONT_SIZES } from '../../constants'
-import Text from '../../component/Text/index.style'
-import RatingButtons from '../../component/RatingButtons'
 
-import { RatingPointsResponse, useRatingFormSubmit } from './api'
+import { faGrinAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import Box from '../../component/Box/index.style'
+import RatingButtons from '../../component/RatingButtons'
+import Text from '../../component/Text/index.style'
+import { COLORS, FONT_SIZES } from '../../constants'
 import { setSessionStorage, STOGAGE_KEY } from '../../utils/session-storage'
+import { RatingPointsResponse, useRatingFormSubmit } from './api'
+import { AnimatedButtonWrapper, AnimatedTitle, FabIcon, RatingFormUI } from './index.style'
 
 const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void; onClose?: () => void }> = ({
   visible,

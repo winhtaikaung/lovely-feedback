@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/macro'
+
 import { COLORS } from '../../constants'
 
 export const RatingButtonUI = styled.li<{ isDisabled: boolean }>`

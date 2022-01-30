@@ -1,21 +1,22 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useForm } from 'react-hook-form'
+import { FormattedMessage } from 'react-intl'
+
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Property } from 'csstype'
+
+import Box from '../../component/Box/index.style'
 import Text from '../../component/Text/index.style'
 import { COLORS, FONT_SIZES } from '../../constants'
-import { FeedFormUI, Form, FormHeader, SubmitButton } from './index.style'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Box from '../../component/Box/index.style'
-
-import ShortAnswer from './components/ShortAnswer'
-import Email from './components/Email'
-import { useFeedBackForm, useFeedBackFormSubmit } from './api/useFeedBackForm'
-import { QuestionModule } from '../../types/question'
 import { QUESTION_TYPE } from '../../enums/questions'
+import { QuestionModule } from '../../types/question'
 import { isEmpty } from '../../utils'
 import { getSessionStorage, STOGAGE_KEY } from '../../utils/session-storage'
+import { useFeedBackForm, useFeedBackFormSubmit } from './api/useFeedBackForm'
+import Email from './components/Email'
+import ShortAnswer from './components/ShortAnswer'
+import { FeedFormUI, Form, FormHeader, SubmitButton } from './index.style'
 
 const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; onClose?: () => void }> = ({
   visible,

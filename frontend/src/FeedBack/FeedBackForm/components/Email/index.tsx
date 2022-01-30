@@ -1,5 +1,6 @@
 import React from 'react'
 import { UseFormRegister } from 'react-hook-form/dist/types'
+
 import { InputText } from '../../../../component/Input/InutText/index.style'
 import Text from '../../../../component/Text/index.style'
 import { FONT_SIZES } from '../../../../constants'

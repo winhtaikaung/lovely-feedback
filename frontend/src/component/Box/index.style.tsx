@@ -1,4 +1,4 @@
-import { StandardProperties, VendorProperties, ObsoleteProperties } from 'csstype'
+import { ObsoleteProperties, StandardProperties, VendorProperties } from 'csstype'
 import styled from 'styled-components/macro'
 
 const kebabCase = (str: string) =>

@@ -119,7 +119,7 @@ export const useApiReducer = (
         dispatch({ actionType: ACTIONTYPE.error, error: e })
       }
     }
-    
+
     if (!!fetchOnLoad && mounted) {
       fetchData()
     }

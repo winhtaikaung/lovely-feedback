@@ -1,5 +1,4 @@
-import TestingUtils from '../../../test-utils'
-import { render } from '../../../test-utils'
+import TestingUtils, { render } from '../../../test-utils'
 import Portal from '../index'
 
 afterEach(TestingUtils.cleanup)
@@ -9,7 +8,7 @@ test('Should render FloatingAction Button properly', () => {
   document.body.appendChild(newRoot)
   render(
     <Portal rootNode={newRoot}>
-      <b data-testid="portal-child"></b>
+      <b data-testid="portal-child" />
     </Portal>,
   )
 

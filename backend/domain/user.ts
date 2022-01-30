@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise'
+
 import { Log } from '../utils/log'
 import { UUID } from '../utils/uuid'
 import { keysToCamel } from './../utils/objectutils'

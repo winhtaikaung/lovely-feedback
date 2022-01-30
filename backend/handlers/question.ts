@@ -1,7 +1,7 @@
 import express from 'express'
 import * as core from 'express-serve-static-core'
-import QuestionDomain from '../domain/question'
 
+import QuestionDomain from '../domain/question'
 import HttpStatusCode from '../enums/httpstatus'
 import { QUESTION_TYPE } from '../enums/question'
 import BaseHandler from './base'

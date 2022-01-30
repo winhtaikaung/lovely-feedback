@@ -1,6 +1,4 @@
-import TestingUtils from '../../../../test-utils'
-import { render } from '../../../../test-utils'
-
+import TestingUtils, { render } from '../../../../test-utils'
 import { TextAreaUI } from '../index.style'
 
 afterEach(TestingUtils.cleanup)

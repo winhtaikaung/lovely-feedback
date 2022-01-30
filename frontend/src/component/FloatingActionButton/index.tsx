@@ -1,10 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGrinAlt } from '@fortawesome/free-solid-svg-icons'
-import { FormattedMessage } from 'react-intl'
 import * as React from 'react'
-import { FabUI } from './index.style'
-import Text from '../Text/index.style'
+import { FormattedMessage } from 'react-intl'
+
+import { faGrinAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { COLORS, FONT_SIZES } from '../../constants'
+import Text from '../Text/index.style'
+import { FabUI } from './index.style'
 
 const FloatingActionButton: React.FC<{ onHelpClick?: () => void }> = ({ onHelpClick }) => {
   const [toggleComponent, setToggleComponent] = React.useState(

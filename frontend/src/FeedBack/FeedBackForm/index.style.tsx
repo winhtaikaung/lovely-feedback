@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/macro'
-import Box from '../../component/Box/index.style'
 
+import Box from '../../component/Box/index.style'
 import { COLORS, FONT_SIZES } from '../../constants'
 
 const visibleStyle = css`

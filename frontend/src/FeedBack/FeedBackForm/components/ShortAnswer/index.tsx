@@ -1,5 +1,6 @@
 import React from 'react'
 import { UseFormRegister } from 'react-hook-form'
+
 import { TextAreaUI } from '../../../../component/Input/TextArea/index.style'
 import Text from '../../../../component/Text/index.style'
 import { FONT_SIZES } from '../../../../constants'

@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise'
+
 import { ddl, schema } from '../migrate'
 import { Log } from './log'
 

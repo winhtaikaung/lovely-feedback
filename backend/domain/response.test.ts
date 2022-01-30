@@ -1,8 +1,8 @@
 import { DBConnect } from '../utils/dbconnect'
 import { UUID } from '../utils/uuid'
+import UserResponseDomain from './response'
 // import { UUID } from '../utils/uuid'
 
-import UserResponseDomain from './response'
 const conn = new DBConnect('mysql://root:123456@mysql:3306/db_feedback_test')
 let ratingDomain = null
 beforeAll(async () => {

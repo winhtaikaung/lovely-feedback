@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise'
+
 import { QUESTION_TYPE } from '../enums/question'
 import { QuestionModule } from '../types/question'
 import { Log } from '../utils/log'

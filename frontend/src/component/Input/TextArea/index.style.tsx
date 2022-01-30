@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+
 import { COLORS, FONT_SIZES } from '../../../constants'
 
 export const TextAreaUI = styled.textarea`
