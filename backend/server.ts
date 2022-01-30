@@ -66,6 +66,8 @@ async function feedbackApp() {
     `mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/${process.env.DB_NAME}`,
   )
   await pgConnect.connect()
+  await pgConnect.dropSchema()
+  await pgConnect.migrateSchema()
 
   const app = new FeedBackAPIService(pgConnect.getConnection()).app
   return app

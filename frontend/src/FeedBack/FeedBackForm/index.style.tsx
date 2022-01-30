@@ -1,18 +1,30 @@
-import styled from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro'
 import Box from '../../component/Box/index.style'
 
 import { COLORS, FONT_SIZES } from '../../constants'
 
-export const FeedFormUI = styled.div`
+const visibleStyle = css`
   width: 350px;
-  height: 500px;
+  height: 550px;
+  content-visibility: auto;
+  transition-delay: 0.7s, 0.3s, 0.3s, 0.3s;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.4s;
+  transition-property: transform, width, height, border-radius;
+`
+
+export const FeedFormUI = styled.div<{ visible: boolean }>`
+  width: 0px;
+  height: 0px;
+  content-visibility: hidden;
   background: ${COLORS.WHITE};
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   position: fixed;
   bottom: 32px;
   left: 32px;
   border-radius: 5px;
-  transition: all 0.3s linear;
+
+  ${({ visible }) => visible && visibleStyle}
 `
 
 export const Form = styled.form`
@@ -24,6 +36,7 @@ export const Form = styled.form`
 
   padding-right: 20px;
   padding-left: 20px;
+  padding-bottom: 20px;
 `
 
 export const SubmitButton = styled.input`
@@ -43,6 +56,9 @@ export const SubmitButton = styled.input`
   &:focus {
     outline-color: ${COLORS.GREY};
     outline-width: 0px;
+  }
+  &:disabled {
+    background: ${COLORS.GREY1};
   }
 `
 

@@ -14,7 +14,10 @@ export default class QuestionDomain extends BaseDomain {
   public async selectById(id: string) {
     try {
       if (this.connection !== null) {
-        const query = 'SELECT id, type,placeholder,answer,question FROM `' + this.tableName + '` WHERE `id`= ?'
+        const query =
+          'SELECT id, type,placeholder,answer,question,enable,field_name,required FROM `' +
+          this.tableName +
+          '` WHERE `id`= ? and is_deleted=False'
         const [rows, fields] = await this.connection.query(this.escapeSQLStr(query), [id])
 
         return { rows: keysToCamel(rows) as QuestionModule.Question[], fields }
@@ -28,7 +31,10 @@ export default class QuestionDomain extends BaseDomain {
   public async selectAllData() {
     try {
       if (this.connection !== null) {
-        const query = 'SELECT id, type,placeholder,answer,question FROM `' + this.tableName + '`'
+        const query =
+          'SELECT id, type,placeholder,answer,question,enable,field_name,required FROM `' +
+          this.tableName +
+          '` WHERE is_deleted=False'
         const [rows, fields] = await this.connection.query(this.escapeSQLStr(query))
 
         return { rows: keysToCamel(rows) as QuestionModule.Question[], fields }
@@ -39,9 +45,18 @@ export default class QuestionDomain extends BaseDomain {
     return { rows: [], fields: [] }
   }
 
-  public async createData(qType: QUESTION_TYPE, question: string, placeHolder?: string, answer?: string) {
+  public async createData(
+    qType: QUESTION_TYPE,
+    question: string,
+    placeHolder?: string,
+    answer?: string,
+    fieldName?: string,
+    required?: boolean,
+  ) {
     const query =
-      'INSERT INTO `' + this.tableName + '`(`id`,`type`, `placeholder`,`question` ,`answer`) VALUES (?,?,?,?,?)'
+      'INSERT INTO `' +
+      this.tableName +
+      '`(`id`,`type`, `placeholder`,`question` ,`answer`,`field_name`,`required`) VALUES (?,?,?,?,?,?,?)'
     const uuid = UUID()
     try {
       if (this.connection !== null) {
@@ -51,6 +66,8 @@ export default class QuestionDomain extends BaseDomain {
           placeHolder || null,
           question,
           answer || null,
+          fieldName,
+          required || false,
         ])
         const result = await this.selectById(uuid)
         return { row: result.rows.length > 0 ? (result.rows[0] as QuestionModule.Question) : null }

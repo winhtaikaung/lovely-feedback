@@ -12,7 +12,8 @@ export default class UserDomain extends BaseDomain {
   public async selectById(id: string) {
     try {
       if (this.connection !== null) {
-        const query = 'SELECT id, rating_id, response_id FROM `' + this.tableName + '` WHERE `id`= ?'
+        const query =
+          'SELECT id, rating_id, response_id FROM `' + this.tableName + '` WHERE `id`= ? and is_deleted=False'
         const [rows, fields] = await this.connection.query(this.escapeSQLStr(query), [id])
 
         return { rows: keysToCamel(rows) as UserModule.User[], fields }
@@ -26,7 +27,7 @@ export default class UserDomain extends BaseDomain {
   public async selectAllData() {
     try {
       if (this.connection !== null) {
-        const query = 'SELECT * FROM `' + this.tableName + '`'
+        const query = 'SELECT * FROM `' + this.tableName + '` WHERE is_deleted=False'
         const [rows, fields] = await this.connection.query(this.escapeSQLStr(query))
 
         return { rows: keysToCamel(rows) as UserModule.User[], fields }

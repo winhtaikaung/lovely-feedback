@@ -1,7 +1,7 @@
-import styled from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro'
 import { COLORS } from '../../constants'
 
-export const RatingButtonUI = styled.li`
+export const RatingButtonUI = styled.li<{ isDisabled: boolean }>`
   width: 40px;
   height: 40px;
   border-right: 1px solid ${COLORS.BLACK};
@@ -14,6 +14,11 @@ export const RatingButtonUI = styled.li`
     background: ${COLORS.GREY};
   }
   cursor: default;
+  ${({ isDisabled }) =>
+    isDisabled &&
+    css`
+      cursor: not-allowed;
+    `}
 `
 
 export const RatingButtonWrapper = styled.ul`

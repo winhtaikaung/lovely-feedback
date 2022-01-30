@@ -8,18 +8,49 @@ import { COLORS, FONT_SIZES } from '../../constants'
 import Text from '../../component/Text/index.style'
 import RatingButtons from '../../component/RatingButtons'
 
-const RatingForm: React.FC<{ onTellUsMoreClicked?: () => void; onClose?: () => void }> = ({
+import { RatingPointsResponse, useRatingFormSubmit } from './api'
+import { setSessionStorage, STOGAGE_KEY } from '../../utils/session-storage'
+
+const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void; onClose?: () => void }> = ({
+  visible,
   onTellUsMoreClicked,
   onClose,
 }) => {
   const [isSubmitted, setIsSubmitted] = React.useState(false)
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
 
+  const create = useRatingFormSubmit({
+    onLoading: () => {
+      setIsSubmitting(true)
+    },
+    onSuccess: (data: any) => {
+      const response = data as RatingPointsResponse
+      setSessionStorage(STOGAGE_KEY.USER_ID, response?.userId)
+
+      setIsSubmitted((prevVal) => !prevVal)
+      setIsSubmitting(false)
+    },
+    onError: () => {
+      setIsSubmitted((prevVal) => !prevVal)
+      setIsSubmitting(false)
+    },
+  })
   return (
-    <RatingFormUI>
-      <Box display="flex" justifyContent="flex-end" paddingRight="12px" paddingTop="12px" onClick={() => onClose?.()}>
-        <FontAwesomeIcon icon={faTimes} color="grey" size="lg" cursor="pointer" />
+    <RatingFormUI visible={visible}>
+      <Box display="flex" justifyContent="flex-end" paddingRight="12px" paddingTop="12px">
+        {!isSubmitted && (
+          <FontAwesomeIcon
+            icon={faTimes}
+            color="grey"
+            size="lg"
+            cursor="pointer"
+            onClick={() => {
+              onClose?.()
+            }}
+          />
+        )}
       </Box>
-      <Box display="flex" flexDirection="column" height="70%" justifyContent="center">
+      <Box display="flex" flexDirection="column" height="90%" justifyContent="center">
         {!isSubmitted && (
           <>
             <Box display="flex" justifyContent="space-around">
@@ -29,7 +60,15 @@ const RatingForm: React.FC<{ onTellUsMoreClicked?: () => void; onClose?: () => v
             </Box>
             <Box display="flex" justifyContent="space-around">
               <AnimatedButtonWrapper>
-                <RatingButtons count={6} onRatingClick={(rating) => setIsSubmitted((prevVal) => !prevVal)} />
+                <RatingButtons
+                  count={6}
+                  isDisabled={isSubmitting}
+                  onRatingClick={(rating) => {
+                    if (!isSubmitting) {
+                      create.makeApiCall({ data: { points: rating } })
+                    }
+                  }}
+                />
               </AnimatedButtonWrapper>
             </Box>
             <Box display="flex" justifyContent="space-evenly">
@@ -48,7 +87,10 @@ const RatingForm: React.FC<{ onTellUsMoreClicked?: () => void; onClose?: () => v
                 fontWeight="bold"
                 color={COLORS.BLACK}
                 cursor="pointer"
-                onClick={() => onTellUsMoreClicked?.()}
+                onClick={() => {
+                  setIsSubmitted(false)
+                  onTellUsMoreClicked?.()
+                }}
               >
                 Thank you! Tell us more
               </Text>

@@ -18,7 +18,7 @@ const ShortAnswer: React.FC<{
         {question}
       </Text>
       <TextAreaUI
-        {...register(fieldName, { required })}
+        {...register(fieldName, { required: !!required })}
         rows={5}
         placeholder={placeholder || ''}
         readOnly={isReadonly}

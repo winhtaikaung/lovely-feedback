@@ -1,0 +1,5 @@
+export enum QUESTION_TYPE {
+  SHORT_ANSWER = 1,
+  EMAIL = 2,
+  LINEAR_SCALE = 3,
+}

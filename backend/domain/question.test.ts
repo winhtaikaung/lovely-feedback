@@ -17,9 +17,27 @@ beforeEach(async () => {
 test('should able to create new question', async () => {
   questionDomain = new QuestionDomain(conn.getConnection(), 'question')
 
-  await questionDomain.createData(QUESTION_TYPE.EMAIL, 'What is your opinion?', 'Placeholder 1', 'Sample Answer')
-  await questionDomain.createData(QUESTION_TYPE.SHORT_ANSWER, 'What is your opinion?', 'Placeholder 1', 'Short Answer')
-  await questionDomain.createData(QUESTION_TYPE.LINEAR_SCALE, 'What is your opinion?', 'Linear Scale', 'Linear Scale')
+  await questionDomain.createData(
+    QUESTION_TYPE.EMAIL,
+    'What is your opinion?',
+    'Placeholder 1',
+    'Sample Answer',
+    'email',
+  )
+  await questionDomain.createData(
+    QUESTION_TYPE.SHORT_ANSWER,
+    'What is your opinion?',
+    'Placeholder 1',
+    'Short Answer',
+    'email',
+  )
+  await questionDomain.createData(
+    QUESTION_TYPE.LINEAR_SCALE,
+    'What is your opinion?',
+    'Linear Scale',
+    'Linear Scale',
+    'email',
+  )
 
   const result = await questionDomain.selectAllData()
 
@@ -30,7 +48,13 @@ test('should able to create new question', async () => {
 
 test('should able to update question', async () => {
   questionDomain = new QuestionDomain(conn.getConnection(), 'question')
-  await questionDomain.createData(QUESTION_TYPE.EMAIL, 'What is your opinion?', 'Placeholder 1', 'Sample Answer')
+  await questionDomain.createData(
+    QUESTION_TYPE.EMAIL,
+    'What is your opinion?',
+    'Placeholder 1',
+    'Sample Answer',
+    'email',
+  )
 
   const result = await questionDomain.selectAllData()
   expect(result).not.toBeNull()
@@ -48,7 +72,13 @@ test('should able to update question', async () => {
 test('should able to delete question', async () => {
   questionDomain = new QuestionDomain(conn.getConnection(), 'question')
 
-  await questionDomain.createData(QUESTION_TYPE.EMAIL, 'What is your opinion?', 'Placeholder 1', 'Sample Answer')
+  await questionDomain.createData(
+    QUESTION_TYPE.EMAIL,
+    'What is your opinion?',
+    'Placeholder 1',
+    'Sample Answer',
+    'email',
+  )
 
   const result = await questionDomain.selectAllData()
 
@@ -61,7 +91,7 @@ test('should able to delete question', async () => {
   expect(deletedResult.rows).toHaveLength(0)
 })
 
-afterAll(done => {
+afterAll((done) => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()
 

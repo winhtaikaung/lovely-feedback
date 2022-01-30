@@ -25,14 +25,24 @@ export default class QuestionHandler extends BaseHandler {
     req: core.Request<
       {},
       any,
-      { data: { type: QUESTION_TYPE; question: string; placeholder?: string; answer?: string } },
+      {
+        data: {
+          type: QUESTION_TYPE
+          question: string
+          fieldName: string
+          enabled: boolean
+          placeholder?: string
+          answer?: string
+          required?: boolean
+        }
+      },
       Record<string, any>
     >,
     res: core.Response<any, Record<string, any>, number>,
     next: core.NextFunction,
   ) {
     const body = req.body
-    if (body && body.data && !!body.data.type && !!body.data.question) {
+    if (body && body.data && !!body.data.type && !!body.data.question && !!body.data.fieldName) {
       next()
     } else {
       res.status(HttpStatusCode.UNPROCESSABLE_ENTITY).json(this.unprocessableEntity('question or type is missing '))
@@ -48,7 +58,17 @@ export default class QuestionHandler extends BaseHandler {
     req: core.Request<
       {},
       any,
-      { data: { type: QUESTION_TYPE; question: string; placeholder?: string; answer?: string } },
+      {
+        data: {
+          type: QUESTION_TYPE
+          question: string
+          fieldName: string
+          enabled: boolean
+          placeholder?: string
+          answer?: string
+          required?: boolean
+        }
+      },
       Record<string, any>
     >,
     res: core.Response<any, Record<string, any>, number>,
@@ -60,6 +80,8 @@ export default class QuestionHandler extends BaseHandler {
       body.data.question,
       body.data?.placeholder,
       body.data?.answer,
+      body.data?.fieldName,
+      body.data?.required,
     )
     if (row) {
       res.status(HttpStatusCode.OK).json(this.resBody(row))
