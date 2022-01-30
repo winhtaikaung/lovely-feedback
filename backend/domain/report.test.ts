@@ -2,7 +2,7 @@ import { DBConnect } from '../utils/dbconnect'
 import { UUID } from '../utils/uuid'
 import RatingDomain from './rating'
 import ReportDomain from './report'
-const conn = new DBConnect('mysql://root:123456@mysql:3306/db_feedback_test')
+const conn = new DBConnect(`mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/db_feedback_test`)
 let reportDomain = null
 let ratingDomain = null
 beforeAll(async () => {
@@ -33,10 +33,10 @@ test('should able to generate rating breakdown', async () => {
   expect(report.rows[0].ratingF).toBe(10)
 })
 
-afterAll(done => {
+afterAll((done) => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()
 
-  conn.disConnect()
+  conn.getConnection()
   done()
 })

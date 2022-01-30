@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise'
 
-import { ddl, schema } from '../migrate'
+import { ddl, schema } from '../dbscripts'
 import { Log } from './log'
 
 export class DBConnect {
@@ -34,7 +34,7 @@ export class DBConnect {
   public async migrateSchema() {
     try {
       if (this.connection) {
-        Object.values(schema).map(async sql => {
+        Object.values((schema as any).default).map(async (sql: any) => {
           await this.connection?.execute(
             `${sql
               .replace(/(\r\n|\n|\r)/gm, ' ') // remove newlines
@@ -51,7 +51,7 @@ export class DBConnect {
   public async dropSchema() {
     try {
       if (this.connection) {
-        Object.values(ddl).map(async sql => {
+        Object.values((ddl as any).default).map(async (sql: any) => {
           await this.connection?.execute(
             `${sql
               .replace(/(\r\n|\n|\r)/gm, ' ') // remove newlines

@@ -57,6 +57,7 @@
     "prettier": "^2.2.1",
     "tslint-plugin-prettier": "^2.3.0",
     "tslint-react": "^5.0.0",
-    "tslint-react-hooks": "^2.2.2"
+    "tslint-react-hooks": "^2.2.2",
+    "ejs": "^2.7.1"
   }
 }

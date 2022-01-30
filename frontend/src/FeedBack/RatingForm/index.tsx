@@ -27,6 +27,7 @@ const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void;
     onSuccess: (data: any) => {
       const response = data as RatingPointsResponse
       setSessionStorage(STOGAGE_KEY.USER_ID, response?.userId)
+      setSessionStorage(STOGAGE_KEY.USER_POINTS, response?.points)
 
       setIsSubmitted((prevVal) => !prevVal)
       setIsSubmitting(false)
@@ -85,7 +86,7 @@ const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void;
           <>
             <Box display="flex" justifyContent="space-evenly" alignItems="center">
               <FabIcon>
-                <FontAwesomeIcon icon={faGrinAlt} color="yellow" size="1x" />
+                <FontAwesomeIcon icon={faGrinAlt} color="yellow" size="lg" />
               </FabIcon>
               <Text
                 fontSize={FONT_SIZES.medium}

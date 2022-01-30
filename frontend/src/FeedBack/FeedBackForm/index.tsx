@@ -72,7 +72,10 @@ const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; o
             if (isEmpty(errors) && isDirty) {
               formSubmitApi.makeApiCall({
                 data: {
-                  responseData: questions.map((qItem) => ({ ...qItem, answer: data[qItem.fieldName] })),
+                  responseData: {
+                    feedback: questions.map((qItem) => ({ ...qItem, answer: data[qItem.fieldName] })),
+                    points: getSessionStorage(STOGAGE_KEY.USER_POINTS),
+                  },
                   userId: getSessionStorage(STOGAGE_KEY.USER_ID),
                 },
               })

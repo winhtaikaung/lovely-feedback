@@ -28,7 +28,7 @@ export default class UserResponseDomain extends BaseDomain {
   public async selectAllData() {
     try {
       if (this.connection !== null) {
-        const query = 'SELECT * FROM `' + this.tableName + '` WHERE is_deleted=False'
+        const query = 'SELECT id,response_data,user_id FROM `' + this.tableName + '` WHERE is_deleted=False'
         const [rows, fields] = await this.connection.query(this.escapeSQLStr(query))
 
         return { rows: keysToCamel(rows) as UserResponseModule.UserResponse[], fields }

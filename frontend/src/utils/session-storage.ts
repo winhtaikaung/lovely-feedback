@@ -1,5 +1,6 @@
 export enum STOGAGE_KEY {
-  USER_ID = 'user_id',
+  USER_ID = 'feedback_user_id',
+  USER_POINTS = 'feedback_user_points',
 }
 
 export const setSessionStorage = (key: STOGAGE_KEY, val: any) => sessionStorage.setItem(key, val)

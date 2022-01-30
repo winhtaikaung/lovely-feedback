@@ -71,7 +71,7 @@ async function feedbackApp() {
   )
   await pgConnect.connect()
 
-  await pgConnect.migrateSchema()
+  
 
   const app = new FeedBackAPIService(pgConnect.getConnection()).app
   return app

@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "test": "jest",
+    "test": "jest --maxConcurrency=1",
     "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpile-only index.ts",
+    "start": "ts-node-dev --respawn --transpile-only index.ts",
     "prod": "tsc && node ./build/index.js",
     "lint": "tslint **/*.ts",
     "prettify": "prettier --config ./.prettierrc.js --write \"./*.{js,ts}\" \"./**/*.{js,ts}\""

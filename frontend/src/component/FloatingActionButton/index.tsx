@@ -30,7 +30,7 @@ const FloatingActionButton: React.FC<{ onHelpClick?: () => void }> = ({ onHelpCl
         ))
       }
       data-testid="fab-help-improved"
-      onMouseLeave={() => setToggleComponent(() => <FontAwesomeIcon icon={faGrinAlt} color="yellow" size="1x" />)}
+      onMouseLeave={() => setToggleComponent(() => <FontAwesomeIcon icon={faGrinAlt} color="yellow" size="lg" />)}
     >
       {toggleComponent}
     </FabUI>

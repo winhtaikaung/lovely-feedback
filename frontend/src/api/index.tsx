@@ -36,15 +36,18 @@ const API: (
   data?: { [key: string]: any },
 ) => {
   try {
-    const response = await fetch(url, {
-      method: method || 'GET', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors',
-      signal: abortSignal,
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      `${(window as { [key: string]: any })['__API_URL__'] || 'http://localhost:8000'}${url}`,
+      {
+        method: method || 'GET',
+        mode: 'cors',
+        signal: abortSignal,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: method === 'GET' ? undefined : JSON.stringify(data || {}),
       },
-      body: method === 'GET' ? undefined : JSON.stringify(data || {}),
-    })
+    )
     return response.json()
   } catch {
     return undefined

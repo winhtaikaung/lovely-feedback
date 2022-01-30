@@ -1,9 +1,10 @@
 import { DBConnect } from '../utils/dbconnect'
 import { UUID } from '../utils/uuid'
 import UserResponseDomain from './response'
-// import { UUID } from '../utils/uuid'
 
-const conn = new DBConnect('mysql://root:123456@mysql:3306/db_feedback_test')
+const conn = new DBConnect(
+  `mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/db_feedback_test`,
+)
 let ratingDomain = null
 beforeAll(async () => {
   await conn.connect()
@@ -59,10 +60,10 @@ test('should able to update response', async () => {
   ratingDomain?.deleteData()
 })
 
-afterAll(done => {
+afterAll((done) => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()
 
-  conn.disConnect()
+  conn.getConnection()
   done()
 })
