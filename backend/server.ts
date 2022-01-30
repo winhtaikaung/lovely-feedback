@@ -13,6 +13,8 @@ import QuestionDomain from './domain/question'
 import QuestionHandler from './handlers/question'
 import UserResponseDomain from './domain/response'
 import UserResponseHandler from './handlers/response'
+import ReportHandler from './handlers/report'
+import ReportDomain from './domain/report'
 
 class FeedBackAPIService {
   public static readonly PORT: number = 5000
@@ -46,10 +48,12 @@ class FeedBackAPIService {
     const ratingDomain = new RatingDomain(this.dbConnection, 'rating')
     const questionDomain = new QuestionDomain(this.dbConnection, 'question')
     const responseDomain = new UserResponseDomain(this.dbConnection, 'response')
+    const reportDomain = new ReportDomain(this.dbConnection)
 
     new RatingHandler(this.expressApp, userDomain, ratingDomain)
     new QuestionHandler(this.expressApp, questionDomain)
     new UserResponseHandler(this.expressApp, responseDomain)
+    new ReportHandler(this.expressApp, reportDomain)
   }
 
   private listen(): void {
@@ -66,7 +70,7 @@ async function feedbackApp() {
     `mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/${process.env.DB_NAME}`,
   )
   await pgConnect.connect()
-  await pgConnect.dropSchema()
+
   await pgConnect.migrateSchema()
 
   const app = new FeedBackAPIService(pgConnect.getConnection()).app

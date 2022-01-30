@@ -19,6 +19,7 @@ test('should able to create new rating', async () => {
   const user1Id = UUID()
   const user2Id = UUID()
   const user3Id = UUID()
+
   await ratingDomain.createData(1, user1Id)
   await ratingDomain.createData(2, user2Id)
   await ratingDomain.createData(2, user3Id)

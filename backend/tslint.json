@@ -6,9 +6,10 @@
     "arrow-parens": [true, "ban-single-arg-parens"],
     "quotemark": [true, "single"],
     "only-arrow-functions": true,
-    "no-namespace":"",
+    "no-namespace":false,
     "semicolon": false,
     "object-literal-sort-keys": false,
+    "no-bitwise":false,
     "ordered-imports": [
       true,
       {

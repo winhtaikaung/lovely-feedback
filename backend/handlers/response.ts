@@ -63,7 +63,7 @@ export default class UserResponseHandler extends BaseHandler {
   }
 
   private async getAllData(
-    req: core.Request<{}, any, any, Record<string, any>>,
+    _: core.Request<{}, any, any, Record<string, any>>,
     res: core.Response<any, Record<string, any>, number>,
   ) {
     const { rows } = await this.userResponseDomain.selectAllData()

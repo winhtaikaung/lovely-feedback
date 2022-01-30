@@ -162,7 +162,6 @@ export default class QuestionHandler extends BaseHandler {
     >,
     res: core.Response<any, Record<string, any>, number>,
   ) {
-    console.log(req.body, req.params)
     const { questionType, placeholder, fieldName, enable, question, answer, required } = req.body.data
     const { row } = await this.questionDomain.updateData(
       req.params.id,

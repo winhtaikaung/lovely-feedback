@@ -114,7 +114,7 @@ test('should able to soft Delete question', async () => {
   expect(deletedResult.rows).toHaveLength(0)
 })
 
-afterAll((done) => {
+afterAll(done => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()
 
