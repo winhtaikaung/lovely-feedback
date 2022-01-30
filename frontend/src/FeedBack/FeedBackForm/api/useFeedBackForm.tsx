@@ -8,6 +8,5 @@ export const useFeedBackForm = (sideEffects?: SideEffectType) => {
 
 export const useFeedBackFormSubmit = (sideEffects?: SideEffectType) => {
   const api = useApiReducer(`/response`, false, sideEffects, 'POST')
-
   return { makeApiCall: api.makeAPICall, state: api.state }
 }
