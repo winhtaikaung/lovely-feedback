@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrinAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
-
+import { FormattedMessage } from 'react-intl'
 import Box from '../../component/Box/index.style'
 import { AnimatedTitle, AnimatedButtonWrapper, FabIcon, RatingFormUI } from './index.style'
 import { COLORS, FONT_SIZES } from '../../constants'
@@ -31,7 +31,6 @@ const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void;
       setIsSubmitting(false)
     },
     onError: () => {
-      setIsSubmitted((prevVal) => !prevVal)
       setIsSubmitting(false)
     },
   })
@@ -55,7 +54,7 @@ const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void;
           <>
             <Box display="flex" justifyContent="space-around">
               <AnimatedTitle fontSize={FONT_SIZES.medium} fontWeight="bold" marginBottom="0">
-                Rate your experience
+                <FormattedMessage id="widget.rating.title" />
               </AnimatedTitle>
             </Box>
             <Box display="flex" justifyContent="space-around">
@@ -72,7 +71,12 @@ const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void;
               </AnimatedButtonWrapper>
             </Box>
             <Box display="flex" justifyContent="space-evenly">
-              <Text marginTop="2px">NOT SATISFIED</Text> <Text marginTop="2px">VERY SATISFIED</Text>
+              <Text marginTop="2px">
+                <FormattedMessage id="widget.rating.not_satisfied" />
+              </Text>
+              <Text marginTop="2px">
+                <FormattedMessage id="widget.rating.very_satisfied" />
+              </Text>
             </Box>
           </>
         )}
@@ -87,12 +91,13 @@ const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void;
                 fontWeight="bold"
                 color={COLORS.BLACK}
                 cursor="pointer"
+                data-testid="thank-you"
                 onClick={() => {
                   setIsSubmitted(false)
                   onTellUsMoreClicked?.()
                 }}
               >
-                Thank you! Tell us more
+                <FormattedMessage id="widget.rating.thankyou" /> <FormattedMessage id="widget.rating.tell_us_more" />
               </Text>
             </Box>
           </>

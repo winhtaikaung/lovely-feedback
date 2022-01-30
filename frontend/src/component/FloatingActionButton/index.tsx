@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrinAlt } from '@fortawesome/free-solid-svg-icons'
+import { FormattedMessage } from 'react-intl'
 import * as React from 'react'
 import { FabUI } from './index.style'
 import Text from '../Text/index.style'
@@ -20,11 +21,13 @@ const FloatingActionButton: React.FC<{ onHelpClick?: () => void }> = ({ onHelpCl
             fontWeight="bold"
             whiteSpace="nowrap"
             onClick={() => onHelpClick?.()}
+            data-testid="help-us-improved"
           >
-            Help us improve
+            <FormattedMessage id="widget.help_us_improved" />
           </Text>
         ))
       }
+      data-testid="fab-help-improved"
       onMouseLeave={() => setToggleComponent(() => <FontAwesomeIcon icon={faGrinAlt} color="yellow" size="1x" />)}
     >
       {toggleComponent}

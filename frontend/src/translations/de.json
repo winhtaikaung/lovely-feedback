@@ -1,0 +1,11 @@
+{
+    "search.placeholder.text": "Type something to search",
+    "card.description.email": "Email",
+    "card.description.phone": "Phone",
+    "card.description.address": "Address",
+    "card.description.zipcode": "ZipCode",
+    "card.description.company": "Company",
+    "notfound": "404 Not Found",
+    "home.nouserfound": "No User Found !",
+    "detail.nouserfound": "404 No User found"
+  }

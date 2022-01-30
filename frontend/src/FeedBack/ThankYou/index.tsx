@@ -1,5 +1,5 @@
 import * as React from 'react'
-
+import { FormattedMessage } from 'react-intl'
 import Box from '../../component/Box/index.style'
 import { ThankYouUI } from './index.style'
 import { COLORS, FONT_SIZES } from '../../constants'
@@ -22,7 +22,7 @@ const ThankYou: React.FC<{ visible: boolean; onCardClicked?: () => void; onClose
               onCardClicked?.()
             }}
           >
-            Thank you!
+            <FormattedMessage id="widget.rating.thankyou" />
           </Text>
         </Box>
         <Box display="flex" justifyContent="space-evenly" alignItems="center">
@@ -34,7 +34,7 @@ const ThankYou: React.FC<{ visible: boolean; onCardClicked?: () => void; onClose
               onCardClicked?.()
             }}
           >
-            Your feedback is valuable to us
+            <FormattedMessage id="widget.thankyou.your_feed_back_is_valuable_for_us" />
           </Text>
         </Box>
       </Box>

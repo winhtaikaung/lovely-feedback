@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { FormattedMessage } from 'react-intl'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useForm } from 'react-hook-form'
 import { Property } from 'csstype'
@@ -50,7 +51,7 @@ const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; o
     <FeedFormUI visible={visible}>
       <FormHeader display="flex" justifyContent="flex-end" alignItems="center" padding="0 10px">
         <Text flexGrow={'1' as Property.FlexGrow} color={COLORS.WHITE} fontSize={FONT_SIZES.medium} fontWeight="bold">
-          Tell us More
+          <FormattedMessage id="widget.rating.tell_us_more" />
         </Text>
         <FontAwesomeIcon
           icon={faTimes}
@@ -101,7 +102,12 @@ const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; o
           ))}
         </Form>
         <Box display="flex" justifyContent="flex-end" paddingRight="30px">
-          <SubmitButton disabled={isSubmitting || !isEmpty(errors) || !isDirty} type="submit" form="responseForm" />
+          <SubmitButton
+            disabled={isSubmitting || !isEmpty(errors) || !isDirty}
+            type="submit"
+            form="responseForm"
+            value={'SUBMIT'}
+          />
         </Box>
       </Box>
     </FeedFormUI>
