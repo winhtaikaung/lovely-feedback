@@ -75,10 +75,10 @@ test('should able to delete user', async () => {
   const deletedResult = await userDomain.selectAllData()
   expect(deletedResult.rows).toHaveLength(0)
 })
-afterAll(done => {
+afterAll((done) => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()
 
-  // conn.disConnect()
+  conn.disConnect()
   done()
 })

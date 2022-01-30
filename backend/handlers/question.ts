@@ -42,7 +42,42 @@ export default class QuestionHandler extends BaseHandler {
     next: core.NextFunction,
   ) {
     const body = req.body
-    if (body && body.data && !!body.data.type && !!body.data.question && !!body.data.fieldName) {
+    if (
+      body &&
+      body.data &&
+      !!body.data.type &&
+      !!body.data.question &&
+      !!body.data.fieldName &&
+      QUESTION_TYPE[body.data.type] !== undefined
+    ) {
+      next()
+    } else {
+      res.status(HttpStatusCode.UNPROCESSABLE_ENTITY).json(this.unprocessableEntity('question or type is missing '))
+    }
+  }
+
+  private async updateValidator(
+    req: core.Request<
+      { id: string },
+      any,
+      {
+        data: {
+          type: QUESTION_TYPE
+          question: string
+          fieldName: string
+          enabled: boolean
+          placeholder?: string
+          answer?: string
+          required?: boolean
+        }
+      },
+      Record<string, any>
+    >,
+    res: core.Response<any, Record<string, any>, number>,
+    next: core.NextFunction,
+  ) {
+    const body = req.body
+    if (req.params && req.params.id && body && body.data && QUESTION_TYPE[body.data.type] !== undefined) {
       next()
     } else {
       res.status(HttpStatusCode.UNPROCESSABLE_ENTITY).json(this.unprocessableEntity('question or type is missing '))
@@ -52,6 +87,8 @@ export default class QuestionHandler extends BaseHandler {
   private instantiateRoute(): void {
     this.app.post('/question', this.validator.bind(this), this.createQuestion.bind(this))
     this.app.get('/question', this.getAllData.bind(this))
+    this.app.put('/question/:id', this.updateValidator.bind(this), this.putQuestion.bind(this))
+    this.app.delete('/question/:id', this.deleteQuestion.bind(this))
   }
 
   private async createQuestion(
@@ -102,6 +139,56 @@ export default class QuestionHandler extends BaseHandler {
     }
 
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json(this.internalServerError('Failed to set Question'))
+  }
+
+  private async putQuestion(
+    req: core.Request<
+      {
+        id: string
+      },
+      any,
+      {
+        data: {
+          questionType?: QUESTION_TYPE
+          question?: string
+          fieldName?: string
+          enable?: boolean
+          placeholder?: string
+          answer?: string
+          required?: boolean
+        }
+      },
+      Record<string, any>
+    >,
+    res: core.Response<any, Record<string, any>, number>,
+  ) {
+    console.log(req.body, req.params)
+    const { questionType, placeholder, fieldName, enable, question, answer, required } = req.body.data
+    const { row } = await this.questionDomain.updateData(
+      req.params.id,
+      questionType,
+      placeholder,
+      question,
+      enable,
+      fieldName,
+      answer,
+      required,
+    )
+    res.json(this.resBody(row))
+  }
+  private async deleteQuestion(
+    req: core.Request<
+      {
+        id: string
+      },
+      any,
+      any,
+      Record<string, any>
+    >,
+    res: core.Response<any, Record<string, any>, number>,
+  ) {
+    const success = await this.questionDomain.softDeleteData(req.params.id)
+    res.json(this.resBody(success))
   }
 }
 

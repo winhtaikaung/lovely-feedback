@@ -78,18 +78,67 @@ export default class QuestionDomain extends BaseDomain {
     return { row: null }
   }
 
-  public async updateData(id: string, qType: QUESTION_TYPE, placeHolder: string) {
-    const query = 'UPDATE `' + this.tableName + '` SET `type`= ?,`placeholder`= ? WHERE `id`= ?'
+  public async updateData(
+    id: string,
+    qType?: QUESTION_TYPE,
+    placeHolder?: string,
+    questionText?: string,
+    enable?: boolean,
+    fieldName?: string,
+    answer?: string,
+    required?: boolean,
+  ) {
+    const query =
+      'UPDATE `' +
+      this.tableName +
+      '` SET `type`= ?,`placeholder`= ?,`enable`=?,`field_name`=?,`answer`=? ,`required`=?,`question`=? WHERE `id`= ?'
 
     try {
       if (this.connection !== null) {
-        const [rows] = await this.connection.execute(this.escapeSQLStr(query), [qType, placeHolder, id])
-        return rows
+        const selectedData = await this.selectById(id)
+        const questionResult = selectedData.rows !== null ? selectedData.rows[0] : null
+        if (questionResult) {
+          questionResult.question = questionText ? questionText : questionResult.question
+          questionResult.answer = answer ? answer : questionResult.answer
+          questionResult.type = qType ? qType : questionResult.type
+          questionResult.placeholder = placeHolder ? placeHolder : questionResult.placeholder
+          questionResult.enable = enable ? enable : questionResult.enable
+          questionResult.fieldName = fieldName ? fieldName : questionResult.fieldName
+          questionResult.required = required ? required : questionResult.required
+
+          await this.connection.execute(this.escapeSQLStr(query), [
+            questionResult.type,
+            questionResult.placeholder,
+            questionResult.enable,
+            questionResult.fieldName,
+            questionResult.answer,
+            questionResult.required,
+            questionResult.question,
+            id,
+          ])
+          const updatedData = await this.selectById(id)
+          return { row: updatedData.rows.length > 0 ? updatedData.rows[0] : null }
+        }
+        return { row: null }
       }
     } catch (e: any) {
       Log.error(`QuestionDomain::updateData ${e.stack}`)
     }
-    return null
+    return { row: null }
+  }
+
+  public async softDeleteData(id: string) {
+    try {
+      if (this.connection !== null) {
+        const query = 'UPDATE `question` SET `is_deleted`=true WHERE `id` = ?'
+
+        await this.connection.execute(this.escapeSQLStr(query), [id])
+        return true
+      }
+    } catch (e: any) {
+      Log.error(`QuestionDomain::createData ${e.stack}`)
+    }
+    return false
   }
 
   public async deleteData() {

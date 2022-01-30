@@ -91,6 +91,29 @@ test('should able to delete question', async () => {
   expect(deletedResult.rows).toHaveLength(0)
 })
 
+test('should able to soft Delete question', async () => {
+  questionDomain = new QuestionDomain(conn.getConnection(), 'question')
+
+  await questionDomain.createData(
+    QUESTION_TYPE.EMAIL,
+    'What is your opinion?',
+    'Placeholder 1',
+    'Sample Answer',
+    'email',
+  )
+
+  const result = await questionDomain.selectAllData()
+  expect(result).not.toBeNull()
+  expect(result.rows).toHaveLength(1)
+
+  const createdId = result?.rows.length > 0 ? result?.rows[0].id : ''
+
+  await questionDomain.softDeleteData(createdId)
+
+  const deletedResult = await questionDomain.selectAllData()
+  expect(deletedResult.rows).toHaveLength(0)
+})
+
 afterAll((done) => {
   // Closing the DB connection allows Jest to exit successfully.
   // conn.dropSchema()

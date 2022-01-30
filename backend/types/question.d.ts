@@ -7,5 +7,8 @@ export namespace QuestionModule {
     question: string
     placeholder: string
     answer: string
+    fieldName: string
+    required: boolean
+    enable: boolean
   }
 }
