@@ -1,15 +1,10 @@
 {
-    "widget.help_us_improved": "Help us Improve",
-    "widget.rating.title": "Rate your experience",
-    "widget.rating.not_satisfied":"NOT SATISFIED",
-    "widget.rating.very_satisfied":"VERY SATISFIED",
-    "widget.rating.thankyou": "Thank you!",
-    "widget.rating.tell_us_more": "Tell us more",
-    "widget.feeback.submit": "SUBMIT",
-    "widget.thankyou.your_feed_back_is_valuable_for_us":"Your feedback is valuable to us",
-    "card.description.zipcode": "ZipCode",
-    "card.description.company": "Company",
-    "notfound": "404 Not Found",
-    "home.nouserfound": "No User Found !",
-    "detail.nouserfound": "404 No User found"
-  }
+  "widget.help_us_improved": "Help us Improve",
+  "widget.rating.title": "Rate your experience",
+  "widget.rating.not_satisfied":"NOT SATISFIED",
+  "widget.rating.very_satisfied":"VERY SATISFIED",
+  "widget.rating.thankyou": "Thank you!",
+  "widget.rating.tell_us_more": "Tell us more",
+  "widget.feeback.submit": "SUBMIT",
+  "widget.thankyou.your_feed_back_is_valuable_for_us":"Your feedback is valuable to us"
+ }
