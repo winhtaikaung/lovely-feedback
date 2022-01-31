@@ -55,7 +55,7 @@ const RatingForm: React.FC<{ visible: boolean; onTellUsMoreClicked?: () => void;
         {!isSubmitted && (
           <>
             <Box display="flex" justifyContent="space-around">
-              <AnimatedTitle fontSize={FONT_SIZES.medium} fontWeight="bold" marginBottom="0">
+              <AnimatedTitle fontSize={FONT_SIZES.medium} fontWeight="bold" marginBottom="0" marginTop="0">
                 <FormattedMessage id="widget.rating.title" />
               </AnimatedTitle>
             </Box>

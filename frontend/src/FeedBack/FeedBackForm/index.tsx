@@ -108,7 +108,7 @@ const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; o
             </React.Fragment>
           ))}
         </Form>
-        <Box display="flex" justifyContent="flex-end" paddingRight="30px">
+        <Box display="flex" justifyContent="flex-end" paddingRight="20px">
           <SubmitButton
             disabled={isSubmitting || !isEmpty(errors) || !isDirty}
             type="submit"
