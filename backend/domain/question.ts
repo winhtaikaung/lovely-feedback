@@ -16,7 +16,7 @@ export default class QuestionDomain extends BaseDomain {
     try {
       if (this.connection !== null) {
         const query =
-          'SELECT id, type,placeholder,answer,question,enable,field_name,required FROM `' +
+          'SELECT id, type,placeholder,answer,question, enable ,field_name,required FROM `' +
           this.tableName +
           '` WHERE `id`= ? and is_deleted=False'
         const [rows, fields] = await this.connection.query(this.escapeSQLStr(query), [id])
@@ -97,15 +97,16 @@ export default class QuestionDomain extends BaseDomain {
     try {
       if (this.connection !== null) {
         const selectedData = await this.selectById(id)
+
         const questionResult = selectedData.rows !== null ? selectedData.rows[0] : null
         if (questionResult) {
           questionResult.question = questionText ? questionText : questionResult.question
           questionResult.answer = answer ? answer : questionResult.answer
           questionResult.type = qType ? qType : questionResult.type
           questionResult.placeholder = placeHolder ? placeHolder : questionResult.placeholder
-          questionResult.enable = enable ? enable : questionResult.enable
+          questionResult.enable = typeof enable !== 'undefined' ? enable : questionResult.enable
           questionResult.fieldName = fieldName ? fieldName : questionResult.fieldName
-          questionResult.required = required ? required : questionResult.required
+          questionResult.required = typeof required !== 'undefined' ? required : questionResult.required
 
           await this.connection.execute(this.escapeSQLStr(query), [
             questionResult.type,

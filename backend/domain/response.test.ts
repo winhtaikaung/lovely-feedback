@@ -60,10 +60,6 @@ test('should able to update response', async () => {
   ratingDomain?.deleteData()
 })
 
-afterAll((done) => {
-  // Closing the DB connection allows Jest to exit successfully.
-  // conn.dropSchema()
-
-  conn.getConnection()
+afterAll(done => {
   done()
 })

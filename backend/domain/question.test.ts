@@ -1,7 +1,9 @@
 import { QUESTION_TYPE } from '../enums/question'
 import { DBConnect } from '../utils/dbconnect'
 import QuestionDomain from './question'
-const conn = new DBConnect(`mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/db_feedback_test`)
+const conn = new DBConnect(
+  `mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:3306/db_feedback_test`,
+)
 let questionDomain = null
 beforeAll(async () => {
   await conn.connect()
@@ -113,10 +115,6 @@ test('should able to soft Delete question', async () => {
   expect(deletedResult.rows).toHaveLength(0)
 })
 
-afterAll((done) => {
-  // Closing the DB connection allows Jest to exit successfully.
-  // conn.dropSchema()
-
-  conn.getConnection()
+afterAll(done => {
   done()
 })

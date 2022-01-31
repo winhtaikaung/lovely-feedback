@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import FloatingActionButton from '../component/FloatingActionButton'
+import { clearStorage } from '../utils/session-storage'
 import FeedBackForm from './FeedBackForm'
 import useFormFlow, { FormUIType } from './hook/useFormFlow'
 import RatingForm from './RatingForm'
@@ -26,6 +27,7 @@ const FeedBack: React.FC = () => {
         }}
         onClose={() => {
           dispatch({ formUiType: FormUIType.SMILY_BUTTON })
+          clearStorage()
         }}
       />
 
@@ -33,15 +35,18 @@ const FeedBack: React.FC = () => {
         visible={state.formUiType === FormUIType.TELL_US_MORE_FORM}
         onFormSubmitted={() => {
           dispatch({ formUiType: FormUIType.THANK_YOU_FORM })
+          clearStorage()
         }}
         onClose={() => {
           dispatch({ formUiType: FormUIType.SMILY_BUTTON })
+          clearStorage()
         }}
       />
       <ThankYou
         visible={state.formUiType === FormUIType.THANK_YOU_FORM}
         onCardClicked={() => {
           dispatch({ formUiType: FormUIType.SMILY_BUTTON })
+          clearStorage()
         }}
       />
     </>

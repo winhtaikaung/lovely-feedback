@@ -23,6 +23,7 @@ const migrateSchema = (dbConnection, schema) => {
         .replace(/(\r\n|\n|\r)/gm, ' ') // remove newlines
         .replace(/\s+/g, ' ')}`,
     )
+    con.end()
     console.info('Migration Success')
     process.exit()
   } catch (e) {

@@ -17,6 +17,7 @@ export class DBConnect {
       Log.success(`Database Connected to ${this.connectionStr}`)
     } catch (e: any) {
       Log.error(`Database connection error ${e?.stack}`)
+      process.exit()
     }
   }
 
@@ -61,6 +62,7 @@ export class DBConnect {
       }
       Log.success(`Database Successfully cleanup`)
     } catch (e: any) {
+
       Log.error(`Database connection error ${e?.stack}`)
     }
   }

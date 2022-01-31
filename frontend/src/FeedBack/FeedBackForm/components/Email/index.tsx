@@ -20,7 +20,7 @@ const Email: React.FC<{
         {question}
       </Text>
       <InputText
-        {...register(fieldName, { required: !!required, pattern: /^\S+@\S+$/i })}
+        {...register(fieldName, { required: !!required, pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/ })}
         placeholder={placeholder || ''}
         readOnly={isReadonly}
         onFocus={() => setIsReadonly(false)}

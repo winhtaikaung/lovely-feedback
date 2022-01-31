@@ -73,8 +73,11 @@ const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; o
               formSubmitApi.makeApiCall({
                 data: {
                   responseData: {
-                    feedback: questions.map((qItem) => ({ ...qItem, answer: data[qItem.fieldName] })),
-                    points: getSessionStorage(STOGAGE_KEY.USER_POINTS),
+                    feedback: questions.map((qItem) => ({
+                      ...qItem,
+                      answer: data[`${qItem.fieldName.replace(/\s/g, '').trim().toLowerCase()}_${qItem.id}`],
+                    })),
+                    points: +(getSessionStorage(STOGAGE_KEY.USER_POINTS) || '0'),
                   },
                   userId: getSessionStorage(STOGAGE_KEY.USER_ID),
                 },
@@ -87,7 +90,7 @@ const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; o
               {qItem.type === QUESTION_TYPE.SHORT_ANSWER && (
                 <ShortAnswer
                   required={qItem.required}
-                  fieldName={qItem.fieldName.trim()}
+                  fieldName={`${qItem.fieldName.replace(/\s/g, '').trim().toLowerCase()}_${qItem.id}`}
                   register={register}
                   question={qItem.question}
                   placeholder={qItem.placeholder}
@@ -96,7 +99,7 @@ const FeedBackForm: React.FC<{ visible: boolean; onFormSubmitted?: () => void; o
               {qItem.type === QUESTION_TYPE.EMAIL && (
                 <Email
                   required={qItem.required}
-                  fieldName={qItem.fieldName}
+                  fieldName={`${qItem.fieldName.replace(/\s/g, '').trim().toLowerCase()}_${qItem.id}`}
                   register={register}
                   question={qItem.question}
                   placeholder={qItem.placeholder}

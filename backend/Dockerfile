@@ -14,4 +14,3 @@ COPY . /app
 RUN npm run tsc
 EXPOSE 5000
 
-CMD ["node","./build/index.js"]

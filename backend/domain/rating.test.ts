@@ -83,10 +83,6 @@ test('should able to generate rating breakdown', async () => {
   expect(report.rows[0].ratingA).toBe(50)
   expect(report.rows[0].ratingF).toBe(10)
 })
-afterAll((done) => {
-  // Closing the DB connection allows Jest to exit successfully.
-  // conn.dropSchema()
-
-  conn.getConnection()
+afterAll(done => {
   done()
 })
